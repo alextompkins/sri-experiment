@@ -2,4 +2,5 @@ export const doThing = () => {
   const element = document.getElementById('app');
 
   element.innerText = 'DID THE THING!';
+  console.log('DID THE THING!');
 };
