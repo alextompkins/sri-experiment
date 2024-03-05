@@ -1,8 +1,9 @@
 import { mountServiceWorker } from './mountServiceWorker';
+import { manifest } from './manifest';
 
 window.addEventListener('load', async () => {
   try {
-    await mountServiceWorker();
+    await mountServiceWorker(manifest);
   } catch (err) {
     console.error(err);
   }

@@ -1,7 +1,7 @@
-import { manifest } from './manifest';
+import { Manifest } from './manifest';
 import { Message } from './messages';
 
-const waitForServiceWorkerToBeReadyAndSetupManifest = async () => {
+const waitForServiceWorkerToBeReadyAndSetupManifest = async (manifest: Manifest) => {
   const activeReg = await navigator.serviceWorker.ready;
 
   await new Promise<void>((resolve) => {
@@ -24,13 +24,13 @@ const waitForServiceWorkerToBeReadyAndSetupManifest = async () => {
   console.log('Service worker ready', activeReg);
 };
 
-export const mountServiceWorker = async () => {
+export const mountServiceWorker = async (manifest: Manifest) => {
   if (!('serviceWorker' in navigator)) {
     throw Error('Service Worker is not supported by browser.');
   }
 
   navigator.serviceWorker.addEventListener('controllerchange', async () => {
-    await waitForServiceWorkerToBeReadyAndSetupManifest();
+    await waitForServiceWorkerToBeReadyAndSetupManifest(manifest);
   });
 
   const reg = await navigator.serviceWorker.register('/integrityServiceWorker.ts', {
@@ -38,5 +38,5 @@ export const mountServiceWorker = async () => {
   });
   console.log('Service worker registered', reg);
 
-  await waitForServiceWorkerToBeReadyAndSetupManifest();
+  await waitForServiceWorkerToBeReadyAndSetupManifest(manifest);
 };
