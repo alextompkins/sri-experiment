@@ -57,7 +57,9 @@ context.addEventListener('fetch', (event) => {
   if (!matchingMetadataEntry) {
     console.log('no matching entry', request.url);
     const abortController = new AbortController();
-    abortController.abort('No SRI hash provided');
+    abortController.abort(
+      `No matching asset metadata found for ${request.url}\nAborting this request as we cannot check the integrity of the file.`,
+    );
 
     event.respondWith(fetch(request, { signal: abortController.signal }));
     return;
