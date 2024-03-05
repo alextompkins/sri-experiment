@@ -3,7 +3,8 @@
     "lib": [
       "esnext",
       "dom",
-      "dom.iterable"
+      "dom.iterable",
+      "WebWorker"
     ],
     "noEmit": true,
     "strict": true,
@@ -14,11 +15,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "target": "es6",
+    "allowJs": true
   },
   "include": [
     "*.ts",
     "**/*.ts",
-    "**/*.tsx",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"
