@@ -19,5 +19,10 @@ export const manifest: Manifest = {
       sri: 'sha256-hash123',
       entrypoint: true,
     },
+    {
+      filename: 'doOtherThing.js',
+      sri: 'sha256-O29P54LtBzO7q35B+bYr5e+Zwh7o/3vq56UPi5kREG4=',
+      entrypoint: true,
+    },
   ],
 };

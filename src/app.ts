@@ -8,6 +8,17 @@ window.addEventListener('load', async () => {
     console.error(err);
   }
 
-  const { doThing } = await import('../cdn/doThing.js');
-  doThing();
+  try {
+    const { doThing } = await import('../cdn/doThing.js');
+    doThing();
+  } catch (err) {
+    console.error(err);
+  }
+
+  try {
+    const { doOtherThing } = await import('../cdn/doOtherThing.js');
+    doOtherThing();
+  } catch (err) {
+    console.error(err);
+  }
 });
