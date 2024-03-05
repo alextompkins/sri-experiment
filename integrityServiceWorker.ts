@@ -23,11 +23,17 @@ context.addEventListener('activate', async (event) => {
   event.waitUntil(context.clients.claim());
 });
 
-context.addEventListener('message', (event) => {
+context.addEventListener('message', async (event) => {
   const message: Message = event.data;
 
   if (message.messageType === 'setupManifest') {
     manifest = message.manifest;
+
+    const activeClient = (await context.clients.matchAll())[0];
+
+    if (!activeClient) throw Error('No active client, cannot confirm manifest setup');
+
+    activeClient.postMessage({ messageType: 'confirmManifest' } satisfies Message);
 
     console.log('set up manifest inside service worker');
   }

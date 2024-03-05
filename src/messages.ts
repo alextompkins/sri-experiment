@@ -5,4 +5,8 @@ interface SetupManifestMessage {
   manifest: Manifest;
 }
 
-export type Message = SetupManifestMessage;
+interface ConfirmManifestMessage {
+  messageType: 'confirmManifest';
+}
+
+export type Message = SetupManifestMessage | ConfirmManifestMessage;

@@ -3,14 +3,25 @@ import { Message } from './messages';
 
 const waitForServiceWorkerToBeReadyAndSetupManifest = async () => {
   const activeReg = await navigator.serviceWorker.ready;
-  if (!activeReg.active) throw Error('No active service worker');
+
+  await new Promise<void>((resolve) => {
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      const message: Message = event.data;
+
+      if (message.messageType === 'confirmManifest') {
+        resolve();
+      }
+    });
+
+    if (!activeReg.active) throw Error('No active service worker');
+
+    activeReg.active.postMessage({
+      messageType: 'setupManifest',
+      manifest,
+    } satisfies Message);
+  });
 
   console.log('Service worker ready', activeReg);
-
-  activeReg.active.postMessage({
-    messageType: 'setupManifest',
-    manifest,
-  } satisfies Message);
 };
 
 export const mountServiceWorker = async () => {
