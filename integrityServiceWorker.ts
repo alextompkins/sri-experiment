@@ -61,13 +61,12 @@ context.addEventListener('fetch', (event) => {
     `Intercepted request for "${matchingMetadataEntry.filename}", setting integrity on request: ${matchingMetadataEntry.sri}`,
   );
 
-  const sriHash = request.integrity ?? matchingMetadataEntry.sri;
   const fetchOptions: RequestInit = {
-    integrity: sriHash,
+    integrity: matchingMetadataEntry.sri,
     method: request.method,
     mode: 'cors', // if we have integrity metadata, it should also use cors
     credentials: 'omit', // ...and omit credentials
-    cache: 'no-cache',
+    cache: 'default',
   };
 
   event.respondWith(fetch(request, fetchOptions));
