@@ -21,8 +21,12 @@ export const manifest: Manifest = {
     },
     {
       filename: 'doOtherThing.js',
-      sri: 'sha256-O29P54LtBzO7q35B+bYr5e+Zwh7o/3vq56UPi5kREG4=',
+      sri: 'sha256-/rQ5rYwYg09wG/jnlsC8TtZW1hzpccgh7JnpaDMAF/M=',
       entrypoint: true,
+    },
+    {
+      filename: 'subModule.js',
+      sri: 'sha256-hpSs81nJ1MUCXLSokfxT+TTmxodz9LPyHX7ssF02W2Y=',
     },
   ],
 };
