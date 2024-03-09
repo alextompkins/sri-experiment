@@ -23,11 +23,7 @@ const manifest: Manifest = {
 };
 
 window.addEventListener('load', async () => {
-  try {
-    await mountServiceWorker(manifest);
-  } catch (err) {
-    console.error(err);
-  }
+  await mountServiceWorker(manifest);
 
   try {
     const { doThing } = await import('../cdn/doThing.js');
